@@ -1,0 +1,70 @@
+---
+import "@/styles/global.css";
+import SiteFooter from "@/components/SiteFooter";
+import SiteHeader from "@/components/SiteHeader.astro";
+import type { SiteMeta } from "@/types/site";
+import { SITE } from "@/data/site";
+
+interface Props extends SiteMeta {}
+
+const { title, description, ogImage } = Astro.props;
+const pageTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE.url);
+---
+
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <!-- Theme initialization -->
+    <script is:inline>
+      (function () {
+        var key = "theme";
+
+        function saveThemeSession() {
+          try {
+            if (document.documentElement.classList.contains("dark")) {
+              sessionStorage.setItem(key, "dark");
+            } else {
+              sessionStorage.removeItem(key);
+            }
+          } catch (_) {}
+        }
+
+        try {
+          if (sessionStorage.getItem(key) === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+        } catch (_) {}
+
+        document.addEventListener("click", function (e) {
+          var btn = e.target.closest("[data-theme-toggle]");
+          if (!btn) return;
+          document.documentElement.classList.toggle("dark");
+          saveThemeSession();
+        });
+      })();
+    </script>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+  </head>
+
+  <body class="flex min-h-screen flex-col antialiased">
+    <SiteHeader />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <SiteFooter client:visible />
+  </body>
+  
+</html>

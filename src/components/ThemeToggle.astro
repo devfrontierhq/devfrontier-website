@@ -1,0 +1,26 @@
+---
+const buttonClass =
+  "inline-flex size-8 shrink-0 items-center justify-center rounded-lg border-0 bg-transparent p-0 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background";
+const iconClass = "absolute inset-0 size-4 shrink-0 opacity-80 dark:opacity-100 dark:invert";
+---
+
+<button type="button" class={buttonClass} data-theme-toggle>
+  <span class="sr-only dark:hidden">切換至深色模式</span>
+  <span class="sr-only hidden dark:inline">切換至淺色模式</span>
+  <span class="relative block size-4">
+    <img
+      src="/icons/theme/moon.svg"
+      alt=""
+      width={16}
+      height={16}
+      class:list={[iconClass, "dark:hidden"]}
+    />
+    <img
+      src="/icons/theme/sun.svg"
+      alt=""
+      width={16}
+      height={16}
+      class:list={[iconClass, "hidden", "dark:block"]}
+    />
+  </span>
+</button>
