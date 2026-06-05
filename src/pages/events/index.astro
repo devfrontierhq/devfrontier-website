@@ -1,0 +1,75 @@
+---
+import EventRegisterButton from "@/components/EventRegisterButton";
+import EventRegistrationBadge from "@/components/EventRegistrationBadge.astro";
+import EventRegistrationClosedBadge from "@/components/EventRegistrationClosedBadge.astro";
+import EventRegistrationUpcomingBadge from "@/components/EventRegistrationUpcomingBadge.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getRegistrationStatus } from "@/lib/events";
+import { getCollection } from "astro:content";
+import { SITE } from "@/data/site";
+
+const events = (await getCollection("events")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<BaseLayout title="最新活動" description={SITE.heroSubtitle}>
+  <section class="mx-auto max-w-3xl px-4 py-12">
+    <h1 class="mb-2 text-3xl font-bold tracking-tight">最新活動</h1>
+    {
+      events.length === 0 ? (
+        <p class="rounded-lg border border-dashed border-border bg-muted/30 p-8 text-center text-muted-foreground">
+          尚無活動，敬請期待。
+        </p>
+      ) : (
+        <ul class="space-y-8">
+          {
+            events.map((event) => {
+              const status = getRegistrationStatus(event.data);
+
+              return (
+                <li
+                  class:list={[
+                    "rounded-lg border p-6 transition-shadow",
+                    status === "open" && "event-registration-open",
+                    status === "upcoming" && "border-amber-500/30 bg-card shadow-sm",
+                    status === "closed" && "border-border/70 bg-muted/25 saturate-[0.85]",
+                  ]}
+                >
+                  <div class="flex flex-wrap items-center gap-2">
+                    <time datetime={event.data.date.toISOString()} class="text-sm text-muted-foreground">
+                      {event.data.date.toLocaleDateString("zh-TW")}
+                    </time>
+                    {status === "open" && <EventRegistrationBadge />}
+                    {status === "upcoming" && <EventRegistrationUpcomingBadge />}
+                    {status === "closed" && <EventRegistrationClosedBadge />}
+                  </div>
+                  <h2 class:list={["mt-1 text-xl font-semibold", status === "closed" && "text-muted-foreground"]}>
+                    <a href={`/events/${event.id}`} class="hover:underline">
+                      {event.data.title}
+                    </a>
+                  </h2>
+                  <p class="mt-1 text-sm text-muted-foreground">{event.data.location}</p>
+                  {
+                    event.data.description && (
+                      <p class="mt-3 text-muted-foreground">{event.data.description}</p>
+                    )
+                  }
+                  {status === "open" && event.data.registrationUrl && (
+                    <div class="mt-4">
+                      <EventRegisterButton
+                        client:visible
+                        href={event.data.registrationUrl}
+                        label="立即報名"
+                      />
+                    </div>
+                  )}
+                </li>
+              );
+            })
+          }
+        </ul>
+      )
+    }
+  </section>
+</BaseLayout>

@@ -1,0 +1,71 @@
+---
+import EventRegisterButton from "@/components/EventRegisterButton";
+import EventRegistrationBadge from "@/components/EventRegistrationBadge.astro";
+import EventRegistrationClosedBadge from "@/components/EventRegistrationClosedBadge.astro";
+import EventRegistrationUpcomingBadge from "@/components/EventRegistrationUpcomingBadge.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { getRegistrationStatus } from "@/lib/events";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const events = await getCollection("events");
+  return events.map((event) => ({
+    params: { slug: event.id },
+    props: { event },
+  }));
+}
+
+interface Props {
+  event: Awaited<ReturnType<typeof getCollection<"events">>>[number];
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+const status = getRegistrationStatus(event.data);
+---
+
+<BaseLayout
+  title={event.data.title}
+  description={event.data.description ?? event.data.title}
+>
+  <article
+    class:list={[
+      "mx-auto max-w-3xl px-4 py-12",
+      status === "closed" && "text-muted-foreground",
+    ]}
+  >
+    <header
+      class:list={[
+        "mb-8 rounded-xl border p-6 sm:p-8",
+        status === "open" && "event-registration-open",
+        status === "upcoming" && "border-amber-500/30 bg-card shadow-sm",
+        status === "closed" && "border-border/70 bg-muted/25 saturate-[0.85]",
+      ]}
+    >
+      <div class="flex flex-wrap items-center gap-2">
+        <time datetime={event.data.date.toISOString()} class="text-sm text-muted-foreground">
+          {event.data.date.toLocaleDateString("zh-TW")}
+        </time>
+        {status === "open" && <EventRegistrationBadge />}
+        {status === "upcoming" && <EventRegistrationUpcomingBadge />}
+        {status === "closed" && <EventRegistrationClosedBadge />}
+      </div>
+      <h1 class:list={["mt-2 text-3xl font-bold tracking-tight", status === "closed" && "text-muted-foreground"]}>
+        {event.data.title}
+      </h1>
+      <p class="mt-2 text-muted-foreground">{event.data.location}</p>
+      {status === "open" && event.data.registrationUrl && (
+        <div class="mt-4">
+          <EventRegisterButton
+            client:visible
+            href={event.data.registrationUrl}
+            label="報名參加"
+          />
+        </div>
+      )}
+    </header>
+    <div class="content-body space-y-4 leading-relaxed [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-semibold [&_ul]:list-disc [&_ul]:pl-6">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

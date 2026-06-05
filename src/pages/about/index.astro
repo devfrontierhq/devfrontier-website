@@ -1,0 +1,9 @@
+---
+import AboutSection from "@/components/AboutSection";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SITE } from "@/data/site";
+---
+
+<BaseLayout title="關於我們" description={SITE.intro}>
+  <AboutSection />
+</BaseLayout>

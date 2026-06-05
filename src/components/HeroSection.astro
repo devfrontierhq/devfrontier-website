@@ -1,0 +1,74 @@
+---
+import { ArrowRight, ChevronDown, UserPlus } from "lucide-react";
+
+import BrandLogo from "@/components/BrandLogo";
+import HeroSkylineScene from "@/components/HeroSkylineScene.astro";
+import LandingStatGrid from "@/components/landing/LandingStatGrid";
+import { HERO_CONTENT, HERO_STATS } from "@/data/landing";
+import { SITE } from "@/data/site";
+---
+
+<section class="landing-hero">
+  <div class="hero-stage relative overflow-hidden">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0">
+      <div class="hero-mesh absolute inset-0"></div>
+      <div class="landing-grid absolute inset-0 opacity-60"></div>
+      <div class="hero-bg-readability"></div>
+      <div
+        class="hero-orb hero-orb-a absolute top-[4%] left-[10%] z-[2] size-72 rounded-full bg-[oklch(0.72_0.14_230/0.4)] blur-3xl sm:top-[6%] sm:left-[16%] sm:size-[22rem] md:left-[22%]"
+      >
+      </div>
+      <div
+        class="hero-orb hero-orb-b pointer-events-none absolute top-[14%] right-[-8%] z-[2] size-80 rounded-full bg-[oklch(0.62_0.22_330/0.2)] blur-3xl sm:top-[12%] sm:right-[-4%] sm:size-96 md:right-[2%]"
+      >
+      </div>
+    </div>
+
+    <div class="hero-main relative z-10">
+      <div class="hero-layout mx-auto w-full max-w-[90rem] px-4 pt-6 pb-4 sm:px-6 sm:pt-8 sm:pb-5 lg:px-10">
+        <div class="hero-fade-in hero-panel" style="animation-delay: 0ms">
+          <h1 class="hero-brand-block mb-4 sm:mb-5">
+            <span class="sr-only">{SITE.name}</span>
+            <BrandLogo className="hero-brand-logo drop-shadow-sm" />
+          </h1>
+
+          <p class="hero-tagline mb-4 max-w-xl sm:mb-5">{HERO_CONTENT.tagline}</p>
+
+          <p class="hero-lead mb-10 max-w-xl sm:mb-12">
+            {HERO_CONTENT.lead}
+          </p>
+
+          <div class="hero-ctas flex flex-wrap items-center gap-3">
+            <a href={HERO_CONTENT.primaryCta.href} class="landing-btn landing-btn-primary">
+              {HERO_CONTENT.primaryCta.label}
+              <ArrowRight className="size-4" aria-hidden />
+            </a>
+            <a href={HERO_CONTENT.secondaryCta.href} class="landing-btn landing-btn-ghost">
+              <UserPlus className="size-4" aria-hidden />
+              {HERO_CONTENT.secondaryCta.label}
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-visual-stack" aria-hidden="true">
+            <HeroSkylineScene />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats-band relative z-10 bg-background">
+    <div class="mx-auto w-full max-w-[90rem] px-4 pt-3 pb-4 sm:px-6 sm:pt-4 sm:pb-5 lg:px-10">
+      <div class="hero-fade-in" style="animation-delay: 200ms">
+        <LandingStatGrid client:visible stats={HERO_STATS} />
+      </div>
+
+      <a href="#impact" class="hero-fade-in landing-scroll-hint mx-auto mt-4 md:mx-0" style="animation-delay: 300ms">
+        <span>{HERO_CONTENT.scrollLabel}</span>
+        <ChevronDown className="size-4" aria-hidden />
+      </a>
+    </div>
+  </div>
+</section>
