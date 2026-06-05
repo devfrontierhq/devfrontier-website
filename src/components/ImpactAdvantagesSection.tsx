@@ -1,6 +1,5 @@
 import {
   BookOpen,
-  Code2,
   Sparkles,
   TrendingUp,
   Users,
@@ -16,7 +15,6 @@ import {
 
 const insightIcons: Record<ImpactPillarIcon, LucideIcon> = {
   book: BookOpen,
-  code: Code2,
   users: Users,
   sparkles: Sparkles,
   trending: TrendingUp,

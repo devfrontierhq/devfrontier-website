@@ -4,35 +4,30 @@ export const IMPACT_INTRO = {
   lead: "不只是辦活動，而是持續累積開發者之間的知識、實作與工程文化。",
 } as const;
 
-export type ImpactPillarIcon =
-  | "book"
-  | "code"
-  | "users"
-  | "sparkles"
-  | "trending";
-
 export const IMPACT_INSIGHTS = [
   {
-    icon: "book" as const,
+    icon: "book",
     title: "知識在前沿流動",
     body: "講座與分享把 JS、AI 與工具鏈的最新實務帶進社群，讓資訊不再只停在螢幕上。",
   },
   {
-    icon: "users" as const,
+    icon: "users",
     title: "工程文化被看見",
     body: "討論協作、品質與團隊節奏，讓技術成長與職場實務接軌。",
   },
   {
-    icon: "sparkles" as const,
+    icon: "sparkles",
     title: "JS × AI 雙軸並行",
     body: "在 JavaScript 生態與 AI 應用之間建立橋梁，探索下一代開發方式。",
   },
   {
-    icon: "trending" as const,
+    icon: "trending",
     title: "職涯路徑更立體",
     body: "連結跨領域能力與職涯選擇，讓成長不只發生在技術深度。",
   },
 ] as const;
+
+export type ImpactPillarIcon = (typeof IMPACT_INSIGHTS)[number]["icon"];
 
 export const IMPACT_DIFFERENTIATORS = [
   {
