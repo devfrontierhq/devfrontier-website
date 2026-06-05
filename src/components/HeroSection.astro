@@ -3,7 +3,7 @@ import { ArrowRight, ChevronDown, UserPlus } from "lucide-react";
 
 import BrandLogo from "@/components/BrandLogo";
 import HeroSkylineScene from "@/components/HeroSkylineScene.astro";
-import LandingStatGrid from "@/components/landing/LandingStatGrid";
+import HeroStats from "@/components/HeroStats";
 import { HERO_CONTENT, HERO_STATS } from "@/data/landing";
 import { SITE } from "@/data/site";
 ---
@@ -62,7 +62,7 @@ import { SITE } from "@/data/site";
   <div class="hero-stats-band relative z-10 bg-background">
     <div class="mx-auto w-full max-w-[90rem] px-4 pt-3 pb-4 sm:px-6 sm:pt-4 sm:pb-5 lg:px-10">
       <div class="hero-fade-in" style="animation-delay: 200ms">
-        <LandingStatGrid client:visible stats={HERO_STATS} />
+        <HeroStats client:visible stats={HERO_STATS} />
       </div>
 
       <a href="#impact" class="hero-fade-in landing-scroll-hint mx-auto mt-4 md:mx-0" style="animation-delay: 300ms">

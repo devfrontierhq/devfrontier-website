@@ -1,4 +1,4 @@
-import type { LandingStat } from "@/types/landing";
+import type { HeroStat } from "@/types/hero";
 import { SITE_CTAS } from "@/data/site";
 
 export const HERO_CONTENT = {
@@ -9,7 +9,7 @@ export const HERO_CONTENT = {
   scrollLabel: "往下滾動探索",
 } as const;
 
-export const HERO_STATS: readonly LandingStat[] = [
+export const HERO_STATS: readonly HeroStat[] = [
   {
     value: "5",
     label: "大主題",
