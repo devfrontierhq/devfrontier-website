@@ -73,9 +73,9 @@ export default function TeamPartnersSection() {
       <div className="relative mx-auto max-w-6xl px-4">
         <div className="mb-10 sm:mb-12">
           <h3 className="mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
-            執行團隊
+            核心成員
           </h3>
-          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {TEAM_MEMBERS.length > 0 ? (
               TEAM_MEMBERS.map((member) => (
                 <li key={member.id}>
