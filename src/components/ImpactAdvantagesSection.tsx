@@ -1,4 +1,3 @@
-import type React from "react";
 import {
   BookOpen,
   Sparkles,
@@ -30,7 +29,7 @@ export default function ImpactAdvantagesSection() {
       />
 
       <div className="relative mx-auto max-w-6xl px-4">
-        <div className="reveal-item">
+        <div data-aos="fade-up">
           <LandingSectionHeader
             title={
               <>
@@ -50,8 +49,9 @@ export default function ImpactAdvantagesSection() {
               return (
                 <li
                   key={insight.title}
-                  className={`reveal-item landing-insight-card ${index === 0 ? "lg:col-span-2" : ""}`}
-                  style={{ "--reveal-delay": `${index * 80}ms` } as React.CSSProperties}
+                  className={`landing-insight-card ${index === 0 ? "lg:col-span-2" : ""}`}
+                  data-aos="fade-up"
+                  data-aos-delay={index * 80}
                 >
                   <span className="landing-insight-icon" aria-hidden>
                     <Icon className="size-5" />
@@ -69,7 +69,7 @@ export default function ImpactAdvantagesSection() {
         </div>
 
         <div className="mt-10 sm:mt-12">
-          <h3 className="reveal-item mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
+          <h3 className="mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl" data-aos="fade-up">
             和其他研討會的差異
           </h3>
 
@@ -77,8 +77,9 @@ export default function ImpactAdvantagesSection() {
             {IMPACT_DIFFERENTIATORS.map((item, index) => (
               <li
                 key={item.dimension}
-                className="reveal-item landing-diff-card"
-                style={{ "--reveal-delay": `${index * 80}ms` } as React.CSSProperties}
+                className="landing-diff-card"
+                data-aos="fade-up"
+                data-aos-delay={index * 80}
               >
                 <span className="landing-diff-index" aria-hidden>
                   {String(index + 1).padStart(2, "0")}

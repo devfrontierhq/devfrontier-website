@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import "aos/dist/aos.css";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader.astro";
 import type { SiteMeta } from "@/types/site";
@@ -65,6 +66,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE.url);
       <slot />
     </main>
     <SiteFooter client:visible />
+    <script>
+      import AOS from "aos";
+      AOS.init({ duration: 600, once: true, offset: 40, easing: "ease-out-cubic" });
+    </script>
   </body>
   
 </html>

@@ -25,7 +25,7 @@ export const NAV_LINKS: NavLink[] = [
 
 export const SITE_CTAS = {
   primary: { href: "/events", label: "查看近期活動" },
-  secondary: { href: "/community", label: "加入社群" },
+  secondary: { href: "/community", label: "參與社群" },
 } as const satisfies Record<"primary" | "secondary", NavLink>;
 
 export const SITE_LINKS = {

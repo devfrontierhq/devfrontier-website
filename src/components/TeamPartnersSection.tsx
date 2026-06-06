@@ -1,11 +1,10 @@
-import type React from "react";
 import { PARTNERS, type Partner } from "@/data/partners";
 import { TEAM_MEMBERS, type TeamMember } from "@/data/team";
 
 function TeamMemberCard({ name, role, image }: TeamMember) {
   return (
-    <article className="landing-team-card flex flex-col items-center text-center">
-      <div className="mb-4 size-20 overflow-hidden rounded-full border border-border bg-muted/60 sm:size-24">
+    <article className="landing-team-card group flex flex-col items-center text-center">
+      <div className="mb-4 size-20 overflow-hidden rounded-full border border-border bg-muted/60 transition-all duration-300 group-hover:scale-110 group-hover:border-primary/50 group-hover:shadow-[0_0_0_4px_oklch(0.62_0.14_230/0.12)] sm:size-24">
         {image ? (
           <img
             src={image}
@@ -73,7 +72,7 @@ export default function TeamPartnersSection() {
     <section id="team-partners" className="landing-section border-t border-border bg-muted/15">
       <div className="relative mx-auto max-w-6xl px-4">
         <div className="mb-10 sm:mb-12">
-          <h3 className="reveal-item mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
+          <h3 className="mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl" data-aos="fade-up">
             核心成員
           </h3>
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
@@ -81,8 +80,8 @@ export default function TeamPartnersSection() {
               TEAM_MEMBERS.map((member, index) => (
                 <li
                   key={member.id}
-                  className="reveal-item"
-                  style={{ "--reveal-delay": `${index * 80}ms` } as React.CSSProperties}
+                  data-aos="fade-up"
+                  data-aos-delay={index * 80}
                 >
                   <TeamMemberCard {...member} />
                 </li>
@@ -94,7 +93,7 @@ export default function TeamPartnersSection() {
         </div>
 
         <div className="mt-10 sm:mt-12">
-          <h3 className="reveal-item mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
+          <h3 className="mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl" data-aos="fade-up">
             贊助夥伴
           </h3>
           <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
@@ -102,8 +101,8 @@ export default function TeamPartnersSection() {
               PARTNERS.map((partner, index) => (
                 <li
                   key={partner.id}
-                  className="reveal-item"
-                  style={{ "--reveal-delay": `${index * 60}ms` } as React.CSSProperties}
+                  data-aos="fade-up"
+                  data-aos-delay={index * 60}
                 >
                   <PartnerCard {...partner} />
                 </li>
