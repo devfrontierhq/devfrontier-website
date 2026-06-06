@@ -7,30 +7,60 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getRegistrationStatus } from "@/lib/events";
 import { getCollection } from "astro:content";
 import { SITE } from "@/data/site";
+import { MapPin } from "lucide-react";
 
-const events = (await getCollection("events")).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
-);
+const STATUS_ORDER = { open: 0, upcoming: 1, closed: 2 };
+
+const events = (await getCollection("events")).sort((eventA, eventB) => {
+  const statusA = getRegistrationStatus(eventA.data);
+  const statusB = getRegistrationStatus(eventB.data);
+  if (statusA !== statusB) return STATUS_ORDER[statusA] - STATUS_ORDER[statusB];
+  return eventB.data.date.valueOf() - eventA.data.date.valueOf();
+});
+
+const tabs = [
+  { key: "all", label: "全部" },
+  { key: "upcoming", label: "報名尚未開始" },
+  { key: "open", label: "報名中" },
+  { key: "closed", label: "已結束" },
+] as const;
 ---
 
-<BaseLayout title="最新活動" description={SITE.heroSubtitle}>
+<BaseLayout title="活動資訊" description={SITE.heroSubtitle}>
   <section class="mx-auto max-w-3xl px-4 py-12">
-    <h1 class="mb-2 text-3xl font-bold tracking-tight">最新活動</h1>
+    <h1 class="mb-6 text-center text-3xl font-bold tracking-tight">活動資訊</h1>
+
+    {events.length > 0 && (
+      <div class="mb-6 flex flex-wrap gap-2" role="tablist">
+        {tabs.map(({ key, label }) => (
+          <button
+            role="tab"
+            data-filter={key}
+            aria-selected={key === "all" ? "true" : "false"}
+            class="filter-tab"
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+    )}
+
     {
       events.length === 0 ? (
         <p class="rounded-lg border border-dashed border-border bg-muted/30 p-8 text-center text-muted-foreground">
           尚無活動，敬請期待。
         </p>
       ) : (
-        <ul class="space-y-8">
+        <ul class="space-y-8" id="events-list">
           {
             events.map((event) => {
               const status = getRegistrationStatus(event.data);
 
               return (
                 <li
+                  data-status={status}
                   class:list={[
-                    "rounded-lg border p-6 transition-shadow",
+                    "event-card rounded-lg border p-6",
                     status === "open" && "event-registration-open",
                     status === "upcoming" && "border-amber-500/30 bg-card shadow-sm",
                     status === "closed" && "border-border/70 bg-muted/25 saturate-[0.85]",
@@ -49,12 +79,13 @@ const events = (await getCollection("events")).sort(
                       {event.data.title}
                     </a>
                   </h2>
-                  <p class="mt-1 text-sm text-muted-foreground">{event.data.location}</p>
-                  {
-                    event.data.description && (
-                      <p class="mt-3 text-muted-foreground">{event.data.description}</p>
-                    )
-                  }
+                  <p class="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <MapPin className="size-3.5 shrink-0" aria-hidden />
+                    <span class="font-semibold">{event.data.location}</span>
+                  </p>
+                  {event.data.description && (
+                    <p class="mt-3 text-muted-foreground">{event.data.description}</p>
+                  )}
                   {status === "open" && event.data.registrationUrl && (
                     <div class="mt-4">
                       <EventRegisterButton
@@ -73,3 +104,61 @@ const events = (await getCollection("events")).sort(
     }
   </section>
 </BaseLayout>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+  const items = document.querySelectorAll<HTMLLIElement>("#events-list [data-status]");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const filter = tab.dataset.filter!;
+
+      tabs.forEach((t) => t.setAttribute("aria-selected", "false"));
+      tab.setAttribute("aria-selected", "true");
+
+      items.forEach((item) => {
+        item.hidden = filter !== "all" && item.dataset.status !== filter;
+      });
+    });
+  });
+</script>
+
+<style>
+  .event-card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .event-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px oklch(0.2 0.03 280 / 0.08);
+    border-color: oklch(0.62 0.14 230 / 0.45);
+  }
+
+  :global(.dark) .event-card:hover {
+    box-shadow: 0 8px 24px oklch(0 0 0 / 0.3);
+  }
+
+  .filter-tab {
+    padding: 0.375rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border);
+    background: transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .filter-tab:hover {
+    color: var(--foreground);
+    border-color: var(--primary);
+  }
+
+  .filter-tab[aria-selected="true"] {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+</style>

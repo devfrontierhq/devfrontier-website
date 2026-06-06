@@ -6,6 +6,7 @@ import EventRegistrationUpcomingBadge from "@/components/EventRegistrationUpcomi
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getRegistrationStatus } from "@/lib/events";
 import { getCollection, render } from "astro:content";
+import { MapPin } from "lucide-react";
 
 export async function getStaticPaths() {
   const events = await getCollection("events");
@@ -53,7 +54,10 @@ const status = getRegistrationStatus(event.data);
       <h1 class:list={["mt-2 text-3xl font-bold tracking-tight", status === "closed" && "text-muted-foreground"]}>
         {event.data.title}
       </h1>
-      <p class="mt-2 text-muted-foreground">{event.data.location}</p>
+      <p class="mt-2 flex items-center gap-1.5 text-muted-foreground">
+        <MapPin className="size-4 shrink-0" aria-hidden />
+        {event.data.location}
+      </p>
       {status === "open" && event.data.registrationUrl && (
         <div class="mt-4">
           <EventRegisterButton
