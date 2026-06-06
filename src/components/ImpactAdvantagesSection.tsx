@@ -64,7 +64,7 @@ export default function ImpactAdvantagesSection() {
           </ul>
         </div>
 
-        <div>
+        <div className="mt-10 sm:mt-12">
           <h3 className="mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
             和其他研討會的差異
           </h3>

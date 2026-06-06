@@ -18,7 +18,7 @@ export const ABOUT_PARAGRAPHS = [
 
 export const NAV_LINKS: NavLink[] = [
   { href: "/events", label: "活動" },
-  { href: "/community", label: "社群" },
+  { href: "/community", label: "參與社群" },
   { href: "/about", label: "關於我們" },
   { href: "/faq", label: "常見問題" },
 ];

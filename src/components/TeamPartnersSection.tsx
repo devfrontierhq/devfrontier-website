@@ -88,9 +88,9 @@ export default function TeamPartnersSection() {
           </ul>
         </div>
 
-        <div>
+        <div className="mt-10 sm:mt-12">
           <h3 className="mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
-            合作夥伴
+            贊助夥伴
           </h3>
           <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {PARTNERS.length > 0 ? (
@@ -100,7 +100,7 @@ export default function TeamPartnersSection() {
                 </li>
               ))
             ) : (
-              <EmptyPlaceholder message="合作夥伴資訊即將公布，歡迎與我們洽談合作。" />
+              <EmptyPlaceholder message="贊助夥伴資訊即將公布，歡迎與我們洽談合作。" />
             )}
           </ul>
         </div>

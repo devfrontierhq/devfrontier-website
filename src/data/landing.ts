@@ -11,18 +11,15 @@ export const HERO_CONTENT = {
 
 export const HERO_STATS: readonly HeroStat[] = [
   {
-    value: "5",
-    label: "大主題",
+    label: "5 大主題",
     hint: "JavaScript · AI · 實戰 · 開源 · 職涯",
   },
   {
-    value: "2",
-    label: "種活動",
+    label: "2 種活動",
     hint: "講座 · 小聚",
   },
   {
-    value: "4+",
-    label: "社群平台",
-    hint: "持續經營與交流",
+    label: "1 場小聚",
+    hint: "目前已舉辦",
   },
 ] as const;
