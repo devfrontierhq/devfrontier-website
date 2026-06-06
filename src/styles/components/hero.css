@@ -1,0 +1,286 @@
+.hero-mesh {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.72 0.14 230 / 28%), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, oklch(0.62 0.22 330 / 18%), transparent),
+    radial-gradient(ellipse 50% 35% at 0% 50%, oklch(0.75 0.1 220 / 15%), transparent);
+  opacity: 0.9;
+  animation: hero-mesh-shift 6s ease-in-out infinite alternate;
+  transform-origin: 50% 0%;
+}
+
+.dark .hero-mesh {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.55 0.16 230 / 35%), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 0%, oklch(0.48 0.2 330 / 28%), transparent),
+    radial-gradient(ellipse 50% 35% at 0% 50%, oklch(0.45 0.12 250 / 22%), transparent);
+}
+
+.hero-gradient-text {
+  background: linear-gradient(120deg,
+    oklch(0.55 0.14 230) 0%,
+    oklch(0.5 0.16 250) 45%,
+    oklch(0.58 0.24 330) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dark .hero-gradient-text {
+  background: linear-gradient(120deg,
+    oklch(0.8 0.12 220) 0%,
+    oklch(0.78 0.14 250) 45%,
+    oklch(0.78 0.18 330) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-fade-in {
+  opacity: 0;
+  animation: hero-fade-in-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-orb-a {
+  animation: hero-float-a 7s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+.hero-orb-b {
+  animation: hero-float 6s ease-in-out infinite;
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.hero-orb-c {
+  animation-name: hero-float-c;
+  animation-delay: -3.5s;
+  animation-duration: 8s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mesh,
+  .hero-orb-a,
+  .hero-orb-b,
+  .hero-fade-in,
+  .landing-scroll-hint {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero-brand-block {
+  margin: 0;
+}
+
+.hero-panel .hero-brand-logo {
+  width: min(100%, 9.5rem);
+  margin-inline: 0;
+}
+
+@media (min-width: 640px) {
+  .hero-panel .hero-brand-logo { width: min(100%, 12.5rem); }
+}
+
+@media (min-width: 1024px) {
+  .hero-panel .hero-brand-logo { width: min(100%, 15.75rem); }
+}
+
+.hero-tagline {
+  margin: 0;
+  font-size: clamp(1.125rem, 2.8vw, 1.625rem);
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.hero-lead {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+}
+
+@media (min-width: 640px) {
+  .hero-lead { font-size: 1.0625rem; }
+}
+
+.hero-ctas {
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .hero-ctas { margin-top: 0.75rem; }
+}
+
+.hero-bg-readability {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      to right,
+      oklch(from var(--background) l c h / 0.96) 0%,
+      oklch(from var(--background) l c h / 0.92) 42%,
+      oklch(from var(--background) l c h / 0.55) 58%,
+      transparent 72%
+    ),
+    linear-gradient(to bottom, oklch(from var(--background) l c h / 0.7) 0%, transparent 24%);
+}
+
+@supports not (background: oklch(from white l c h)) {
+  .hero-bg-readability {
+    background:
+      linear-gradient(
+        to right,
+        var(--background) 0%,
+        color-mix(in oklch, var(--background) 92%, transparent) 42%,
+        color-mix(in oklch, var(--background) 55%, transparent) 58%,
+        transparent 72%
+      ),
+      linear-gradient(to bottom, color-mix(in oklch, var(--background) 70%, transparent) 0%, transparent 24%);
+  }
+}
+
+.hero-stage {
+  position: relative;
+}
+
+.hero-main {
+  width: 100%;
+}
+
+.hero-layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hero-layout > * {
+  min-width: 0;
+}
+
+.hero-panel {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 36rem;
+  text-align: left;
+  text-shadow: 0 1px 12px var(--background);
+}
+
+.hero-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .hero-stat-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+.hero-stat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 1.15rem 1.2rem;
+  border-radius: calc(var(--radius) * 2);
+  border: 1px solid var(--border);
+  background: oklch(from var(--card) l c h / 0.5);
+  backdrop-filter: blur(12px);
+}
+
+.dark .hero-stat-card {
+  background: oklch(from var(--card) l c h / 0.62);
+}
+
+.hero-stat-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin: 0;
+  font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+}
+
+.hero-stat-value {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+.hero-stat-hint {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}
+
+.hero-visual {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.hero-visual-stack {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .hero-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.25rem 2rem;
+    min-height: min(52vh, 500px);
+  }
+
+  .hero-panel {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+    justify-self: start;
+  }
+
+  .hero-visual {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: stretch;
+    justify-content: flex-end;
+    pointer-events: none;
+  }
+
+  .hero-stats-band .landing-scroll-hint {
+    align-items: flex-start;
+    margin-inline: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-layout {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 2rem 2.5rem;
+    min-height: min(58vh, 580px);
+  }
+}
