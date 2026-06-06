@@ -15,7 +15,7 @@ export default function LandingSectionHeader({
     <header className={`mx-auto max-w-3xl text-center ${className}`}>
       <h2 className="landing-section-title">{title}</h2>
       {lead ? (
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <p className="mt-4 text-base leading-relaxed text-muted-foreground">
           {lead}
         </p>
       ) : null}

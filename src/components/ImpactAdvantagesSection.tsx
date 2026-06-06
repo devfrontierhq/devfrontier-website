@@ -1,3 +1,4 @@
+import type React from "react";
 import {
   BookOpen,
   Sparkles,
@@ -29,16 +30,18 @@ export default function ImpactAdvantagesSection() {
       />
 
       <div className="relative mx-auto max-w-6xl px-4">
-        <LandingSectionHeader
-          title={
-            <>
-              <span className="block">{IMPACT_INTRO.titleLine1}</span>
-              <span className="hero-gradient-text">{IMPACT_INTRO.titleLine2}</span>
-            </>
-          }
-          lead={IMPACT_INTRO.lead}
-          className="mb-6 sm:mb-8"
-        />
+        <div className="reveal-item">
+          <LandingSectionHeader
+            title={
+              <>
+                <span className="block">{IMPACT_INTRO.titleLine1}</span>
+                <span className="hero-gradient-text">{IMPACT_INTRO.titleLine2}</span>
+              </>
+            }
+            lead={IMPACT_INTRO.lead}
+            className="mb-6 sm:mb-8"
+          />
+        </div>
 
         <div className="mb-6 sm:mb-8">
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -47,7 +50,8 @@ export default function ImpactAdvantagesSection() {
               return (
                 <li
                   key={insight.title}
-                  className={`landing-insight-card ${index === 0 ? "lg:col-span-2" : ""}`}
+                  className={`reveal-item landing-insight-card ${index === 0 ? "lg:col-span-2" : ""}`}
+                  style={{ "--reveal-delay": `${index * 80}ms` } as React.CSSProperties}
                 >
                   <span className="landing-insight-icon" aria-hidden>
                     <Icon className="size-5" />
@@ -55,7 +59,7 @@ export default function ImpactAdvantagesSection() {
                   <h4 className="mb-2 text-base font-semibold tracking-tight sm:text-lg">
                     {insight.title}
                   </h4>
-                  <p className="text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
+                  <p className="text-sm leading-relaxed text-muted-foreground">
                     {insight.body}
                   </p>
                 </li>
@@ -65,23 +69,27 @@ export default function ImpactAdvantagesSection() {
         </div>
 
         <div className="mt-10 sm:mt-12">
-          <h3 className="mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
+          <h3 className="reveal-item mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
             和其他研討會的差異
           </h3>
 
           <ul className="grid gap-4 md:grid-cols-2">
             {IMPACT_DIFFERENTIATORS.map((item, index) => (
-              <li key={item.dimension} className="landing-diff-card">
+              <li
+                key={item.dimension}
+                className="reveal-item landing-diff-card"
+                style={{ "--reveal-delay": `${index * 80}ms` } as React.CSSProperties}
+              >
                 <span className="landing-diff-index" aria-hidden>
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <p className="mb-2 text-xs font-medium uppercase tracking-wider text-primary">
+                <p className="mb-2 text-base font-medium uppercase tracking-wider text-primary">
                   {item.dimension}
                 </p>
-                <p className="mb-4 text-sm leading-relaxed sm:text-base">
+                <p className="mb-4 text-sm leading-relaxed">
                   {item.ours}
                 </p>
-                <p className="border-t border-border/70 pt-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                <p className="border-t border-border/70 pt-3 text-sm leading-relaxed text-muted-foreground">
                   常見做法：{item.typical}
                 </p>
               </li>

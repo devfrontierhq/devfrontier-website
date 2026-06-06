@@ -1,3 +1,4 @@
+import type React from "react";
 import { PARTNERS, type Partner } from "@/data/partners";
 import { TEAM_MEMBERS, type TeamMember } from "@/data/team";
 
@@ -33,7 +34,7 @@ function PartnerCard({ name, logo, href }: Partner) {
           className="mx-auto h-10 w-auto max-w-full object-contain object-center sm:h-12"
         />
       ) : (
-        <span className="text-sm font-semibold tracking-tight text-foreground sm:text-base">
+        <span className="text-sm font-semibold tracking-tight text-foreground">
           {name}
         </span>
       )}
@@ -61,7 +62,7 @@ function PartnerCard({ name, logo, href }: Partner) {
 
 function EmptyPlaceholder({ message }: { message: string }) {
   return (
-    <p className="col-span-full rounded-xl border border-dashed border-border bg-muted/25 px-6 py-10 text-center text-sm text-muted-foreground sm:text-base">
+    <p className="col-span-full rounded-xl border border-dashed border-border bg-muted/25 px-6 py-10 text-center text-sm text-muted-foreground">
       {message}
     </p>
   );
@@ -72,13 +73,17 @@ export default function TeamPartnersSection() {
     <section id="team-partners" className="landing-section border-t border-border bg-muted/15">
       <div className="relative mx-auto max-w-6xl px-4">
         <div className="mb-10 sm:mb-12">
-          <h3 className="mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
+          <h3 className="reveal-item mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
             核心成員
           </h3>
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
             {TEAM_MEMBERS.length > 0 ? (
-              TEAM_MEMBERS.map((member) => (
-                <li key={member.id}>
+              TEAM_MEMBERS.map((member, index) => (
+                <li
+                  key={member.id}
+                  className="reveal-item"
+                  style={{ "--reveal-delay": `${index * 80}ms` } as React.CSSProperties}
+                >
                   <TeamMemberCard {...member} />
                 </li>
               ))
@@ -89,13 +94,17 @@ export default function TeamPartnersSection() {
         </div>
 
         <div className="mt-10 sm:mt-12">
-          <h3 className="mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
+          <h3 className="reveal-item mb-6 text-center text-2xl font-bold tracking-tight sm:mb-8 sm:text-3xl">
             贊助夥伴
           </h3>
           <ul className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {PARTNERS.length > 0 ? (
-              PARTNERS.map((partner) => (
-                <li key={partner.id}>
+              PARTNERS.map((partner, index) => (
+                <li
+                  key={partner.id}
+                  className="reveal-item"
+                  style={{ "--reveal-delay": `${index * 60}ms` } as React.CSSProperties}
+                >
                   <PartnerCard {...partner} />
                 </li>
               ))

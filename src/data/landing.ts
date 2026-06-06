@@ -15,7 +15,7 @@ export const HERO_STATS: readonly HeroStat[] = [
     hint: "JavaScript · AI · 實戰 · 開源 · 職涯",
   },
   {
-    label: "2 種活動",
+    label: "2 種參與形式",
     hint: "講座 · 小聚",
   },
   {
