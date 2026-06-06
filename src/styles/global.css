@@ -3,9 +3,7 @@
 @import "@fontsource-variable/geist";
 @import "./animations.css";
 @import "./components/hero.css";
-@import "./components/hero-skyline.css";
 @import "./components/landing.css";
-@import "./components/header.css";
 
 @custom-variant dark (&:is(.dark *));
 
