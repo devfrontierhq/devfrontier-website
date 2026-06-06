@@ -444,6 +444,15 @@
   filter: brightness(1.08);
 }
 
+.btn-shimmer {
+  position: absolute;
+  top: -10%;
+  width: 45%;
+  height: 120%;
+  background: linear-gradient(90deg, transparent, oklch(1 0 0 / 0.28), transparent);
+  pointer-events: none;
+}
+
 .hero-ctas .landing-btn {
   text-shadow: none;
   box-shadow: none;
