@@ -17,7 +17,7 @@ export const ABOUT_PARAGRAPHS = [
 ] as const;
 
 export const NAV_LINKS: NavLink[] = [
-  { href: "/events", label: "活動" },
+  { href: "/events", label: "活動資訊" },
   { href: "/community", label: "參與社群" },
   { href: "/about", label: "關於我們" },
   { href: "/faq", label: "常見問題" },
@@ -40,4 +40,5 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { label: "Instagram", href: "https://www.instagram.com/devfrontierhq", icon: "instagram" },
   { label: "Threads", href: "https://www.threads.com/@devfrontierhq", icon: "threads" },
   { label: "Bluesky", href: "https://bsky.app/profile/devfrontier.bsky.social", icon: "bluesky" },
+  { label: "GitHub", href: "https://github.com/devfrontierhq", icon: "github" },
 ];

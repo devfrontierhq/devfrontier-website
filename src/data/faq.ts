@@ -7,7 +7,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     question: "如何報名最新活動？",
-    answer: "請至「最新活動」頁面查看場次，點選活動詳情後使用報名連結，或透過表單系統完成報名。",
+    answer: "請至「活動資訊」頁面查看場次，點選活動詳情後使用報名連結，或透過表單系統完成報名。",
   },
   {
     question: "我可以上台分享或擔任志工嗎？",
@@ -18,7 +18,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     answer: "視場次而定，部分活動會提供簡報或錄影連結。建議訂閱 Footer 的活動通知，以免錯過下一場。",
   },
   {
-    question: "如何加入 Discord / 社群管道？",
-    answer: "請至頁尾連結加入 Discord、GitHub 或其他官方管道，即時訊息與公告會在該處發布。",
-  },
+    question: " 報名活動是否會開立收據？",
+    answer: "目前報名活動可提供收據，我們會在活動結束後統一寄送電子收據。",
+  }
 ];
