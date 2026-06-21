@@ -1,4 +1,5 @@
 ---
+import HeaderLogo3D from "@/components/layout/HeaderLogo3D.astro";
 import SiteMobileNav from "@/components/layout/SiteMobileNav.astro";
 import ThemeToggle from "@/components/layout/ThemeToggle.astro";
 import { Menu, X } from "lucide-react";
@@ -9,9 +10,11 @@ import { NAV_LINKS, SITE } from "@/data/site";
   <div class="mx-auto flex min-h-18 max-w-360 items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-10">
     <a
       href="/"
-      class="shrink-0 rounded-md text-xl font-semibold tracking-tight text-foreground outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+      aria-label={SITE.name}
+      class="flex shrink-0 items-center gap-0 rounded-md text-xl font-semibold tracking-tight text-foreground outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
     >
-      {SITE.name}
+      <HeaderLogo3D />
+      <span>{"evFrontier"}</span>
     </a>
     <nav class="flex items-center gap-1 sm:gap-2">
       <div class="hidden items-center gap-1 md:flex lg:gap-2">
