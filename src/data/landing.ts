@@ -16,7 +16,7 @@ export const HERO_STATS: readonly HeroStat[] = [
   },
   {
     label: "2 種參與形式",
-    hint: "講座 · 小聚",
+    hint: "線上、線下",
   },
   {
     label: "1 場小聚",

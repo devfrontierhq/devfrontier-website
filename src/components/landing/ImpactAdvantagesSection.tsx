@@ -1,5 +1,6 @@
 import {
   BookOpen,
+  Globe,
   Sparkles,
   TrendingUp,
   Users,
@@ -18,6 +19,7 @@ const insightIcons: Record<ImpactPillarIcon, LucideIcon> = {
   users: Users,
   sparkles: Sparkles,
   trending: TrendingUp,
+  globe: Globe,
 };
 
 export default function ImpactAdvantagesSection() {

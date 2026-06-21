@@ -23,8 +23,13 @@ export const IMPACT_INSIGHTS = [
   {
     icon: "trending",
     title: "職涯路徑更立體",
-    body: "連結跨領域能力與職涯選擇，讓成長不只發生在技術深度。",
+    body: "連結跨領域能力與職涯選擇，讓成長不只是在技術。",
   },
+  {
+    icon: "globe",
+    title: "國際視野在台灣",
+    body: "邀請國際講者分享經驗，讓台灣開發者也能接觸全球的技術趨勢與實踐。",
+  }
 ] as const;
 
 export type ImpactPillarIcon = (typeof IMPACT_INSIGHTS)[number]["icon"];
