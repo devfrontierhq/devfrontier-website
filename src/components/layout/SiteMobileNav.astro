@@ -8,7 +8,7 @@ import { NAV_LINKS } from "@/data/site";
   data-mobile-nav
   aria-hidden="true"
 >
-  <div class="mx-auto max-w-[90rem] px-4 py-4 sm:px-6 lg:px-10">
+  <div class="mx-auto max-w-360 px-4 py-4 sm:px-6 lg:px-10">
     <ul class="flex flex-col gap-1">
       {
         NAV_LINKS.map((link) => (
@@ -27,7 +27,30 @@ import { NAV_LINKS } from "@/data/site";
 </div>
 
 <script>
-  import { initMobileNav } from "@/lib/mobile-nav";
+  const header = document.querySelector<HTMLElement>("[data-site-header]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-mobile-nav-toggle]");
+  const panel = document.querySelector<HTMLElement>("[data-mobile-nav]");
+  const label = toggle?.querySelector(".sr-only");
 
-  initMobileNav();
+  if (header && toggle && panel && label) {
+    const isOpen = () => toggle.ariaExpanded === "true";
+
+    const setOpen = (open: boolean) => {
+      toggle.ariaExpanded = String(open);
+      panel.classList.toggle("hidden", !open);
+      panel.ariaHidden = String(!open);
+      header.toggleAttribute("data-nav-open", open);
+      label.textContent = open ? "關閉選單" : "開啟選單";
+      document.body.classList.toggle("overflow-hidden", open);
+    };
+
+    const close = () => setOpen(false);
+
+    toggle.addEventListener("click", () => setOpen(!isOpen()));
+    panel.addEventListener("click", (e) => { if ((e.target as Element).closest("a")) close(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && isOpen()) close(); });
+    document.addEventListener("click", (e) => {
+      if (isOpen() && e.target instanceof Node && !header.contains(e.target)) close();
+    });
+  }
 </script>
