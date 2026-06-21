@@ -17,7 +17,7 @@
 | Style | [Tailwind CSS v4](https://tailwindcss.com) |
 | UI Library | [MUI](https://mui.com) |
 | Font | [Geist Variable](https://vercel.com/font) |
-| Icon | [Lucide React](https://lucide.dev) + 自訂社群 SVG |
+| Icon | [Lucide React](https://lucide.dev) |
 | Animation | GSAP、AOS、react-countup |
 | Deploy | [Cloudflare Pages](https://pages.cloudflare.com)（Wrangler） |
 
@@ -32,8 +32,6 @@
 
 ```bash
 pnpm install
-
-# 啟動開發伺服器（預設 http://localhost:4321）
 pnpm dev
 ```
 
@@ -42,8 +40,12 @@ pnpm dev
 
 ```
 src/
-├─ components/       # UI components (.astro static / .tsx React islands)
+├─ components/       # UI components, grouped by domain
+│  ├─ layout/        # Site shell
+│  ├─ common/        # Cross-domain shared (brand logo, social links, MUI provider)
 │  ├─ landing/       # Home page section components
+│  ├─ events/        # Events
+│  └─ *.{astro,tsx}  # Single-file pages (about, community, FAQ)
 ├─ content/          # Content collections
 │  └─ events/        # Event posts (Markdown)
 ├─ data/             # Static copy & data (site, team, FAQ, partners…)

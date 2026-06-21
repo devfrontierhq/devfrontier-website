@@ -1,8 +1,6 @@
 ---
-import EventRegisterButton from "@/components/EventRegisterButton";
-import EventRegistrationBadge from "@/components/EventRegistrationBadge.astro";
-import EventRegistrationClosedBadge from "@/components/EventRegistrationClosedBadge.astro";
-import EventRegistrationUpcomingBadge from "@/components/EventRegistrationUpcomingBadge.astro";
+import EventRegisterButton from "@/components/events/EventRegisterButton";
+import EventRegistrationBadge from "@/components/events/EventRegistrationBadge.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { getRegistrationStatus } from "@/lib/events";
 import { getCollection } from "astro:content";
@@ -70,9 +68,10 @@ const tabs = [
                     <time datetime={event.data.date.toISOString()} class="text-sm text-muted-foreground">
                       {event.data.date.toLocaleDateString("zh-TW")}
                     </time>
-                    {status === "open" && <EventRegistrationBadge />}
-                    {status === "upcoming" && <EventRegistrationUpcomingBadge />}
-                    {status === "closed" && <EventRegistrationClosedBadge />}
+                    {status &&
+                      <EventRegistrationBadge 
+                        status={status} 
+                      />}
                   </div>
                   <h2 class:list={["mt-1 text-xl font-semibold", status === "closed" && "text-muted-foreground"]}>
                     <a href={`/events/${event.id}`} class="hover:underline">

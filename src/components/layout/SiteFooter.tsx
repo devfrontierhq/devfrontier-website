@@ -1,5 +1,5 @@
-import EventNotificationForm from "@/components/EventNotificationForm";
-import SocialLinks from "@/components/SocialLinks";
+import EventNotificationForm from "@/components/events/EventNotificationForm";
+import SocialLinks from "@/components/common/SocialLinks";
 import { SITE } from "@/data/site";
 import { withMuiProvider } from "@/lib/with-mui-provider";
 
