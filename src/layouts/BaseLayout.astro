@@ -61,6 +61,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE.url);
   </head>
 
   <body class="flex min-h-screen flex-col antialiased">
+    <div class="scroll-progress" aria-hidden="true"></div>
     <SiteHeader />
     <main class="flex-1">
       <slot />
@@ -71,5 +72,4 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? SITE.url);
       AOS.init({ duration: 600, once: true, offset: 40, easing: "ease-out-cubic" });
     </script>
   </body>
-  
 </html>
