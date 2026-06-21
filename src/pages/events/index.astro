@@ -12,7 +12,9 @@ const STATUS_ORDER = { open: 0, upcoming: 1, closed: 2 };
 const events = (await getCollection("events")).sort((eventA, eventB) => {
   const statusA = getRegistrationStatus(eventA.data);
   const statusB = getRegistrationStatus(eventB.data);
-  if (statusA !== statusB) return STATUS_ORDER[statusA] - STATUS_ORDER[statusB];
+  const rankA = statusA ? STATUS_ORDER[statusA] : STATUS_ORDER.closed + 1;
+  const rankB = statusB ? STATUS_ORDER[statusB] : STATUS_ORDER.closed + 1;
+  if (rankA !== rankB) return rankA - rankB;
   return eventB.data.date.valueOf() - eventA.data.date.valueOf();
 });
 

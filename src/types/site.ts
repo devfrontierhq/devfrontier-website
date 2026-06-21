@@ -12,5 +12,5 @@ export interface NavLink {
 export interface SocialLink {
   label: string;
   href: string;
-  icon: "facebook" | "instagram" | "threads" | "bluesky";
+  icon: "facebook" | "instagram" | "threads" | "bluesky" | "github";
 }
