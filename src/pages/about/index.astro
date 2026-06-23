@@ -24,7 +24,7 @@ import { ABOUT_PILLARS, ABOUT_GOALS } from "@/data/about";
       </h2>
       <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         {ABOUT_PILLARS.map((pillar, i) => (
-          <li class="pillar-card" data-aos="fade-up" data-aos-delay={i * 70}>
+          <li class="flex min-h-18 items-center justify-center rounded-lg border border-primary bg-primary/[0.07] px-3 py-5 text-center text-sm font-semibold text-primary dark:bg-primary/10" data-aos="fade-up" data-aos-delay={i * 70}>
             {pillar.label}
           </li>
         ))}
@@ -39,8 +39,8 @@ import { ABOUT_PILLARS, ABOUT_GOALS } from "@/data/about";
       </h2>
       <ul class="grid gap-4 md:grid-cols-3">
         {ABOUT_GOALS.map((goal, i) => (
-          <li class="goal-card" data-aos="fade-up" data-aos-delay={i * 100}>
-            <span class="goal-index" aria-hidden="true">{goal.index}</span>
+          <li class="card-hover group rounded-xl border border-border bg-card p-6" data-aos="fade-up" data-aos-delay={i * 100}>
+            <span class="mb-3 block text-[2.5rem] font-bold leading-none text-primary opacity-[0.18] transition-[opacity,text-shadow] duration-300 group-hover:opacity-[0.32] group-hover:[text-shadow:0_0_20px_oklch(0.62_0.14_230/0.2)] dark:group-hover:[text-shadow:0_0_20px_oklch(0.75_0.14_220/0.3)]" aria-hidden="true">{goal.index}</span>
             <p class="mb-3 text-sm font-semibold uppercase tracking-wider text-primary">{goal.phase}</p>
             <p class="text-sm leading-relaxed text-muted-foreground">{goal.body}</p>
           </li>
@@ -49,41 +49,3 @@ import { ABOUT_PILLARS, ABOUT_GOALS } from "@/data/about";
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .pillar-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 4.5rem;
-    padding: 1.25rem 0.75rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--primary);
-    background: oklch(0.62 0.14 230 / 0.07);
-    font-weight: 600;
-    font-size: 0.9375rem;
-    text-align: center;
-    color: var(--primary);
-  }
-
-  :global(.dark) .pillar-card {
-    background: oklch(0.75 0.14 220 / 0.1);
-  }
-
-  .goal-card {
-    padding: 1.5rem;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--border);
-    background: var(--card);
-  }
-
-  .goal-index {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 0.75rem;
-    color: var(--primary);
-    opacity: 0.18;
-  }
-</style>

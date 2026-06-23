@@ -145,6 +145,23 @@
   }
 }
 
+/*
+  首頁-和其他研討會的差異
+  關於我們-我們的目標
+*/
+@utility card-hover {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    border-color: oklch(0.62 0.14 230 / 0.45);
+    box-shadow: 0 12px 40px oklch(0.2 0.03 280 / 0.06);
+  }
+
+  .dark &:hover {
+    box-shadow: 0 12px 40px oklch(0 0 0 / 0.35);
+  }
+}
+
 /* 頂部捲動進度條 */
 .scroll-progress {
   position: fixed;

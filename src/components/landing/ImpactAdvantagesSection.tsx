@@ -79,7 +79,7 @@ export default function ImpactAdvantagesSection() {
             {IMPACT_DIFFERENTIATORS.map((item, index) => (
               <li
                 key={item.dimension}
-                className="landing-diff-card"
+                className="landing-diff-card card-hover"
                 data-aos="fade-up"
                 data-aos-delay={index * 80}
               >
