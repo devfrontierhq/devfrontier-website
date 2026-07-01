@@ -5,13 +5,15 @@ import { fileURLToPath } from "node:url";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 
+import sitemap from "@astrojs/sitemap";
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
   // TODO: check domain
-  site: "https://devfrontier.dev",
-  integrations: [react()],
+  site: "https://devfrontier.org",
+  integrations: [react(), sitemap()],
 
   vite: {
     plugins: [tailwindcss()],
